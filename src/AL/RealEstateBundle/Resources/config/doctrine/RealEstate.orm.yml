@@ -15,7 +15,7 @@ AL\RealEstateBundle\Entity\RealEstate:
     desc:
       type: text
       length: 500
-      nullable:true
+      nullable: true
     is_public:
       type: boolean
       nullable: true
@@ -40,3 +40,9 @@ AL\RealEstateBundle\Entity\RealEstate:
       type: datetime
       nullable: true
   manyToOne:
+    category:
+      targetEntity: RealEstateCategory
+      inversedBy: real_estate_objects
+      joinColumn:
+        name: category_id
+        referencedColumnName: id
