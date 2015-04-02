@@ -1,0 +1,16 @@
+AL\RealEstateBundle\Entity\RealEstateCategory:
+  type: entity
+  table: category
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    name:
+      type: string
+      length: 255
+      unique: true
+  oneTo Many:
+    real_estate_objects:
+      targetEntity: RealEstate
+      mappedBy: realEstateCategory

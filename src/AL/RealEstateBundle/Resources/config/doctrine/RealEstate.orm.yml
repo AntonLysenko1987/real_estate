@@ -11,7 +11,7 @@ AL\RealEstateBundle\Entity\RealEstate:
       type: string
       length: 255
     price:
-      type: double
+      type: float
     desc:
       type: text
       length: 500
@@ -23,10 +23,10 @@ AL\RealEstateBundle\Entity\RealEstate:
       type: boolean
       nullable: true
     latitude:
-      type: double
+      type: float
       nullable: true
     longitude:
-      type: double
+      type: float
       nullable: true
     url:
       type: string
