@@ -1,0 +1,6 @@
+.idea/
+app/config/parameters.yml
+vendor/
+web/
+app/cache
+app/logs

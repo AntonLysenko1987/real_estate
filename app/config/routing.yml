@@ -1,0 +1,7 @@
+al_real_estate:
+    resource: "@ALRealEstateBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

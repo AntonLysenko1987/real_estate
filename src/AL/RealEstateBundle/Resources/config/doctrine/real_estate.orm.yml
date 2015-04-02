@@ -1,0 +1,42 @@
+
+AL\RealEstateBundle\Entity\RealEstate:
+  type: entity
+  table: real_estate
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    address:
+      type: string
+      length: 255
+    price:
+      type: double
+    desc:
+      type: text
+      length: 500
+      nullable:true
+    is_public:
+      type: boolean
+      nullable: true
+    is_activated:
+      type: boolean
+      nullable: true
+    latitude:
+      type: double
+      nullable: true
+    longitude:
+      type: double
+      nullable: true
+    url:
+      type: string
+      length: 255
+      nullable: true
+    expires_at:
+      type: datetime
+    created_at:
+      type: datetime
+    updated_at:
+      type: datetime
+      nullable: true
+  manyToOne:
