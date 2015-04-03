@@ -53,7 +53,7 @@ AL\RealEstateBundle\Entity\RealEstate:
       joinColumn:
         name: operation_type_id
         referencedColumnName: id
-    owner:
+    owners:
       targetEntity: Owner
       inversedBy: real_estate_objects
       joinColumn:

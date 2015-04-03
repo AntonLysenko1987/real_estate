@@ -82,7 +82,7 @@ class RealEstate
     /**
      * @var \AL\RealEstateBundle\Entity\Owner
      */
-    private $owner;
+    private $owners;
 
 
     /**
@@ -395,37 +395,33 @@ class RealEstate
     }
 
     /**
-     * Set owner
+     * Set owners
      *
-     * @param \AL\RealEstateBundle\Entity\Owner $owner
+     * @param \AL\RealEstateBundle\Entity\Owner $owners
      * @return RealEstate
      */
-    public function setOwner(\AL\RealEstateBundle\Entity\Owner $owner = null)
+    public function setOwners(\AL\RealEstateBundle\Entity\Owner $owners = null)
     {
-        $this->owner = $owner;
+        $this->owners = $owners;
 
         return $this;
     }
 
     /**
-     * Get owner
+     * Get owners
      *
      * @return \AL\RealEstateBundle\Entity\Owner 
      */
-    public function getOwner()
+    public function getOwners()
     {
-        return $this->owner;
+        return $this->owners;
     }
-
     /**
      * @ORM\PrePersist
      */
     public function setCreatedAtValue()
     {
-        if(!$this->getCreatedAt())
-        {
-            $this->created_at = new \DateTime();
-        }
+        // Add your code here
     }
 
     /**
@@ -433,6 +429,6 @@ class RealEstate
      */
     public function setUpdatedAtValue()
     {
-        $this->updated_at = new \DateTime();
+        // Add your code here
     }
 }

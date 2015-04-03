@@ -20,9 +20,9 @@ AL\RealEstateBundle\Entity\Owner:
       type: string
       length: 255
       unique: true
-  oneTo Many:
+  oneToMany:
     real_estate_objects:
       targetEntity: RealEstate
-      mappedBy: owner
+      mappedBy: owners
   lifecycleCallbacks:
       prePersist: [ setCreatedAtValue ]

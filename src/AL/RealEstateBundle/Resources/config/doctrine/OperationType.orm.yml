@@ -9,7 +9,7 @@ AL\RealEstateBundle\Entity\OperationType:
     type:
       type: string
       length: 255
-  oneTo Many:
+  oneToMany:
     operation_types:
       targetEntity: RealEstate
-      mappedBy: owner
+      mappedBy: operation_type

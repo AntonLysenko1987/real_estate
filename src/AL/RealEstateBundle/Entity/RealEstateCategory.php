@@ -19,6 +19,18 @@ class RealEstateCategory
      */
     private $name;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $real_estate_objects;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->real_estate_objects = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -52,8 +64,37 @@ class RealEstateCategory
     {
         return $this->name;
     }
-    public function __toString()
+
+    /**
+     * Add real_estate_objects
+     *
+     * @param \AL\RealEstateBundle\Entity\RealEstate $realEstateObjects
+     * @return RealEstateCategory
+     */
+    public function addRealEstateObject(\AL\RealEstateBundle\Entity\RealEstate $realEstateObjects)
     {
-        return $this->getName();
+        $this->real_estate_objects[] = $realEstateObjects;
+
+        return $this;
+    }
+
+    /**
+     * Remove real_estate_objects
+     *
+     * @param \AL\RealEstateBundle\Entity\RealEstate $realEstateObjects
+     */
+    public function removeRealEstateObject(\AL\RealEstateBundle\Entity\RealEstate $realEstateObjects)
+    {
+        $this->real_estate_objects->removeElement($realEstateObjects);
+    }
+
+    /**
+     * Get real_estate_objects
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRealEstateObjects()
+    {
+        return $this->real_estate_objects;
     }
 }

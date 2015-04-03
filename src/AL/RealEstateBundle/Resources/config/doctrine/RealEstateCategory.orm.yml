@@ -10,7 +10,7 @@ AL\RealEstateBundle\Entity\RealEstateCategory:
       type: string
       length: 255
       unique: true
-  oneTo Many:
+  oneToMany:
     real_estate_objects:
       targetEntity: RealEstate
-      mappedBy: realEstateCategory
+      mappedBy: category

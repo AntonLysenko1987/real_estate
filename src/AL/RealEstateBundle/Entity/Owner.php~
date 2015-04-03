@@ -30,6 +30,11 @@ class Owner
     private $phone_number;
 
     /**
+     * @var \DateTime
+     */
+    private $created_at;
+
+    /**
      * @var string
      */
     private $token;
@@ -135,5 +140,87 @@ class Owner
     public function getToken()
     {
         return $this->token;
+    }
+    /**
+     * @var \DateTime
+     */
+
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return Owner
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        if(!$this->getCreatedAt())
+        {
+            $this->created_at = new \DateTime();
+        }
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $real_estate_objects;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->real_estate_objects = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add real_estate_objects
+     *
+     * @param \AL\RealEstateBundle\Entity\RealEstate $realEstateObjects
+     * @return Owner
+     */
+    public function addRealEstateObject(\AL\RealEstateBundle\Entity\RealEstate $realEstateObjects)
+    {
+        $this->real_estate_objects[] = $realEstateObjects;
+
+        return $this;
+    }
+
+    /**
+     * Remove real_estate_objects
+     *
+     * @param \AL\RealEstateBundle\Entity\RealEstate $realEstateObjects
+     */
+    public function removeRealEstateObject(\AL\RealEstateBundle\Entity\RealEstate $realEstateObjects)
+    {
+        $this->real_estate_objects->removeElement($realEstateObjects);
+    }
+
+    /**
+     * Get real_estate_objects
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRealEstateObjects()
+    {
+        return $this->real_estate_objects;
     }
 }

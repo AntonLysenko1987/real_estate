@@ -19,6 +19,18 @@ class OperationType
      */
     private $type;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $operation_types;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->operation_types = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -52,8 +64,37 @@ class OperationType
     {
         return $this->type;
     }
-    public function __toString()
+
+    /**
+     * Add operation_types
+     *
+     * @param \AL\RealEstateBundle\Entity\RealEstate $operationTypes
+     * @return OperationType
+     */
+    public function addOperationType(\AL\RealEstateBundle\Entity\RealEstate $operationTypes)
     {
-        return $this->getName();
+        $this->operation_types[] = $operationTypes;
+
+        return $this;
+    }
+
+    /**
+     * Remove operation_types
+     *
+     * @param \AL\RealEstateBundle\Entity\RealEstate $operationTypes
+     */
+    public function removeOperationType(\AL\RealEstateBundle\Entity\RealEstate $operationTypes)
+    {
+        $this->operation_types->removeElement($operationTypes);
+    }
+
+    /**
+     * Get operation_types
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOperationTypes()
+    {
+        return $this->operation_types;
     }
 }

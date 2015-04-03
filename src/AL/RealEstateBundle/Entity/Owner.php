@@ -30,10 +30,27 @@ class Owner
     private $phone_number;
 
     /**
+     * @var \DateTime
+     */
+    private $created_at;
+
+    /**
      * @var string
      */
     private $token;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $real_estate_objects;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->real_estate_objects = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -115,34 +132,6 @@ class Owner
     }
 
     /**
-     * Set token
-     *
-     * @param string $token
-     * @return Owner
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /**
-     * Get token
-     *
-     * @return string 
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
-    /**
-     * @var \DateTime
-     */
-    private $created_at;
-
-
-    /**
      * Set created_at
      *
      * @param \DateTime $createdAt
@@ -164,14 +153,67 @@ class Owner
     {
         return $this->created_at;
     }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     * @return Owner
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string 
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Add real_estate_objects
+     *
+     * @param \AL\RealEstateBundle\Entity\RealEstate $realEstateObjects
+     * @return Owner
+     */
+    public function addRealEstateObject(\AL\RealEstateBundle\Entity\RealEstate $realEstateObjects)
+    {
+        $this->real_estate_objects[] = $realEstateObjects;
+
+        return $this;
+    }
+
+    /**
+     * Remove real_estate_objects
+     *
+     * @param \AL\RealEstateBundle\Entity\RealEstate $realEstateObjects
+     */
+    public function removeRealEstateObject(\AL\RealEstateBundle\Entity\RealEstate $realEstateObjects)
+    {
+        $this->real_estate_objects->removeElement($realEstateObjects);
+    }
+
+    /**
+     * Get real_estate_objects
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRealEstateObjects()
+    {
+        return $this->real_estate_objects;
+    }
     /**
      * @ORM\PrePersist
      */
     public function setCreatedAtValue()
     {
-        if(!$this->getCreatedAt())
-        {
-            $this->created_at = new \DateTime();
-        }
+        // Add your code here
     }
 }

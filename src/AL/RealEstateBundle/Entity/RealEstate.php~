@@ -416,4 +416,51 @@ class RealEstate
     {
         return $this->owner;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        if(!$this->getCreatedAt())
+        {
+            $this->created_at = new \DateTime();
+        }
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updated_at = new \DateTime();
+    }
+    /**
+     * @var \AL\RealEstateBundle\Entity\Owner
+     */
+    private $owners;
+
+
+    /**
+     * Set owners
+     *
+     * @param \AL\RealEstateBundle\Entity\Owner $owners
+     * @return RealEstate
+     */
+    public function setOwners(\AL\RealEstateBundle\Entity\Owner $owners = null)
+    {
+        $this->owners = $owners;
+
+        return $this;
+    }
+
+    /**
+     * Get owners
+     *
+     * @return \AL\RealEstateBundle\Entity\Owner 
+     */
+    public function getOwners()
+    {
+        return $this->owners;
+    }
 }
