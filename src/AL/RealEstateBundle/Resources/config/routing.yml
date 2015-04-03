@@ -1,3 +1,7 @@
+al_real_estate_al_real_estate:
+    resource: "@ALRealEstateBundle/Resources/config/routing/realestate.yml"
+    prefix:   /al_real_estate
+
 al_real_estate_homepage:
     path:     /hello/{name}
     defaults: { _controller: ALRealEstateBundle:Default:index }

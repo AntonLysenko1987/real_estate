@@ -10,6 +10,6 @@ AL\RealEstateBundle\Entity\OperationType:
       type: string
       length: 255
   oneTo Many:
-    types:
+    operation_types:
       targetEntity: RealEstate
       mappedBy: owner

@@ -7,15 +7,15 @@ AL\RealEstateBundle\Entity\RealEstate:
       type: integer
       generator: {strategy: AUTO}
   fields:
-                        address:
-                          type: string
-                          length: 255
-                        price:
-                          type: float
-                        desc:
-                          type: text
-                          length: 500
-                          nullable: true
+    address:
+      type: string
+      length: 255
+    price:
+      type: float
+    description:
+      type: text
+      length: 500
+      nullable: true
     is_public:
       type: boolean
       nullable: true
@@ -34,6 +34,7 @@ AL\RealEstateBundle\Entity\RealEstate:
       nullable: true
     expires_at:
       type: datetime
+      nullable: true
     created_at:
       type: datetime
     updated_at:
@@ -46,3 +47,18 @@ AL\RealEstateBundle\Entity\RealEstate:
       joinColumn:
         name: category_id
         referencedColumnName: id
+    operation_type:
+      targetEntity: OperationType
+      inversedBy: operation_types
+      joinColumn:
+        name: operation_type_id
+        referencedColumnName: id
+    owner:
+      targetEntity: Owner
+      inversedBy: real_estate_objects
+      joinColumn:
+        name: owner_id
+        referencedColumnName: id
+  lifecycleCallbacks:
+      prePersist: [ setCreatedAtValue ]
+      preUpdate: [ setUpdatedAtValue ]

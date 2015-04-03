@@ -1,0 +1,30 @@
+al_real_estate:
+    path:     /
+    defaults: { _controller: "ALRealEstateBundle:RealEstate:index" }
+
+al_real_estate_show:
+    path:     /{id}/show
+    defaults: { _controller: "ALRealEstateBundle:RealEstate:show" }
+
+al_real_estate_new:
+    path:     /new
+    defaults: { _controller: "ALRealEstateBundle:RealEstate:new" }
+
+al_real_estate_create:
+    path:     /create
+    defaults: { _controller: "ALRealEstateBundle:RealEstate:create" }
+    methods:  POST
+
+al_real_estate_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ALRealEstateBundle:RealEstate:edit" }
+
+al_real_estate_update:
+    path:     /{id}/update
+    defaults: { _controller: "ALRealEstateBundle:RealEstate:update" }
+    methods:  [POST, PUT]
+
+al_real_estate_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ALRealEstateBundle:RealEstate:delete" }
+    methods:  [POST, DELETE]

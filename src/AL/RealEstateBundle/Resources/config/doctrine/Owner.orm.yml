@@ -14,11 +14,15 @@ AL\RealEstateBundle\Entity\Owner:
       length: 255
     phone_number:
       type: integer
+    created_at:
+      type: datetime
     token:
       type: string
       length: 255
       unique: true
   oneTo Many:
-      owners:
-          targetEntity: RealEstate
-          mappedBy: owner
+    real_estate_objects:
+      targetEntity: RealEstate
+      mappedBy: owner
+  lifecycleCallbacks:
+      prePersist: [ setCreatedAtValue ]
