@@ -1,0 +1,15 @@
+AL\RealEstateBundle\Entity\OperationType:
+  type: entity
+  table: operation_type
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    type:
+      type: string
+      length: 255
+  oneTo Many:
+    types:
+      targetEntity: RealEstate
+      mappedBy: owner

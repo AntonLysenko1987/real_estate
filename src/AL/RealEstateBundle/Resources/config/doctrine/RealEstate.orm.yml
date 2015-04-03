@@ -7,15 +7,15 @@ AL\RealEstateBundle\Entity\RealEstate:
       type: integer
       generator: {strategy: AUTO}
   fields:
-    address:
-      type: string
-      length: 255
-    price:
-      type: float
-    desc:
-      type: text
-      length: 500
-      nullable: true
+                        address:
+                          type: string
+                          length: 255
+                        price:
+                          type: float
+                        desc:
+                          type: text
+                          length: 500
+                          nullable: true
     is_public:
       type: boolean
       nullable: true
