@@ -97,4 +97,8 @@ class RealEstateCategory
     {
         return $this->real_estate_objects;
     }
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

@@ -28,7 +28,6 @@ class RealEstateType extends AbstractType
             ->add('updated_at')
             ->add('category')
             ->add('operation_type')
-            ->add('owner')
         ;
     }
     

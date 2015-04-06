@@ -97,4 +97,8 @@ class OperationType
     {
         return $this->operation_types;
     }
+    public function __toString()
+    {
+        return $this->getType();
+    }
 }

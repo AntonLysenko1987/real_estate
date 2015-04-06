@@ -216,4 +216,9 @@ class Owner
     {
         // Add your code here
     }
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 }
