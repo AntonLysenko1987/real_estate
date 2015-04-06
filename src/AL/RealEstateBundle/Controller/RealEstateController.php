@@ -23,7 +23,7 @@ class RealEstateController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ALRealEstateBundle:RealEstate')->findAll();
+        $entities = $em->getRepository('ALRealEstateBundle:RealEstate')->getActiveRealEstates(10);
 
         return $this->render('ALRealEstateBundle:RealEstate:index.html.twig', array(
             'entities' => $entities,

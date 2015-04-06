@@ -1,6 +1,6 @@
 <?php
 
-namespace Ens\JobeetBundle\Repository;
+namespace AL\RealEstateBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 class RealEstateRepository extends EntityRepository
