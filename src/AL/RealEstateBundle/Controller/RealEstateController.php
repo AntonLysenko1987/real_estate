@@ -15,11 +15,21 @@ use AL\RealEstateBundle\Form\RealEstateType;
 class RealEstateController extends Controller
 {
 
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('ALRealEstateBundle:RealEstate')->getActiveRealEstates(10);
+
+        return $this->render('ALRealEstateBundle:RealEstate:index.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
     /**
      * Lists all RealEstate entities.
      *
      */
-    public function indexAction()
+    public function realEstateEntitiesAction()
     {
         $em = $this->getDoctrine()->getManager();
 
