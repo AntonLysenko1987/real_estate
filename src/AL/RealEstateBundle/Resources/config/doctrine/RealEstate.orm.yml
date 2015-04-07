@@ -1,6 +1,7 @@
 
 AL\RealEstateBundle\Entity\RealEstate:
   type: entity
+  repositoryClass: AL\RealEstateBundle\Repository\RealEstateRepository
   table: real_estate
   id:
     id:
