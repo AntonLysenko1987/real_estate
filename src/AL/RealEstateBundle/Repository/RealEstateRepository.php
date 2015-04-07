@@ -17,7 +17,7 @@ class RealEstateRepository extends EntityRepository
             $qb->setMaxResults($max);
         }
         $query = $qb->getQuery();
-        return $query-getResult();
+        return $query->getResult();
     }
 }
 ?>

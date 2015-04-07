@@ -3,6 +3,7 @@
 namespace AL\RealEstateBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * RealEstate
@@ -422,6 +423,7 @@ class RealEstate
     public function setCreatedAtValue()
     {
         // Add your code here
+        $this->created_at = new \DateTime();
     }
 
     /**
@@ -430,5 +432,6 @@ class RealEstate
     public function setUpdatedAtValue()
     {
         // Add your code here
+        $this->updated_at = new \DateTime();
     }
 }

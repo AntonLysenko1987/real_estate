@@ -20,7 +20,7 @@ class LoadRealEstateData extends AbstractFixture implements OrderedFixtureInterf
         $real_estate_flat -> setIsPublic(true);
         $real_estate_flat -> setIsActivated(true);
         $real_estate_flat -> setExpiresAt(new \DateTime('tomorrow'));
-        $real_estate_flat -> setOwner($em->merge($this->getReference('owner-alex')));
+        $real_estate_flat -> setOwners($em->merge($this->getReference('owner-alex')));
 
         $real_estate_house = new RealEstate();
         $real_estate_house -> setCategory($em->merge($this->getReference('category-house')));
@@ -31,7 +31,7 @@ class LoadRealEstateData extends AbstractFixture implements OrderedFixtureInterf
         $real_estate_house -> setIsPublic(true);
         $real_estate_house -> setIsActivated(true);
         $real_estate_house -> setExpiresAt(new \DateTime('tomorrow'));
-        $real_estate_house -> setOwner($em->merge($this->getReference('owner-john')));
+        $real_estate_house -> setOwners($em->merge($this->getReference('owner-john')));
 
         $em->persist($real_estate_flat);
         $em->persist($real_estate_house);
@@ -47,7 +47,7 @@ class LoadRealEstateData extends AbstractFixture implements OrderedFixtureInterf
             $real_estate -> setIsPublic(true);
             $real_estate -> setIsActivated(true);
             $real_estate -> setExpiresAt(new \DateTime('tomorrow'));
-            $real_estate -> setOwner($em->merge($this->getReference('owner-john')));
+            $real_estate -> setOwners($em->merge($this->getReference('owner-john')));
 
             $em->persist($real_estate);
         }
