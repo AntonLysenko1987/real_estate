@@ -1,7 +1,10 @@
+
 al_real_estate:
     path:     /
     defaults: { _controller: "ALRealEstateBundle:RealEstate:index" }
-
+al_real_estate_show_real_estate:
+    path:     /real-estate-list
+    defaults: { _controller: "ALRealEstateBundle:RealEstate:realEstateEntities" }
 al_real_estate_show:
     path:     /{id}/show
     defaults: { _controller: "ALRealEstateBundle:RealEstate:show" }
