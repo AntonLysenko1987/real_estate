@@ -1,70 +1,53 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <div id="wrapper">
-        {% block header %}
-            <header>
-                <h1>Недвижимость</h1>
-            </header>
-        {% endblock header %}
-        {% block main_content %}
-            <h1>RealEstate list</h1>
 
-            <table class="records_list">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Address</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Is_public</th>
-                    <th>Is_activated</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Url</th>
-                    <th>Expires_at</th>
-                    <th>Created_at</th>
-                    <th>Updated_at</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for entity in entities %}
-                    <tr>
-                        <td><a href="{{ path('al_real_estate_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                        <td>{{ entity.address }}</td>
-                        <td>{{ entity.price }}</td>
-                        <td>{{ entity.description }}</td>
-                        <td>{{ entity.ispublic }}</td>
-                        <td>{{ entity.isactivated }}</td>
-                        <td>{{ entity.latitude }}</td>
-                        <td>{{ entity.longitude }}</td>
-                        <td>{{ entity.url }}</td>
-                        <td>{% if entity.expiresat %}{{ entity.expiresat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('al_real_estate_show', { 'id': entity.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('al_real_estate_edit', { 'id': entity.id }) }}">edit</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+    <div class="container-fluid height-100">
+        <div class="row height-100">
+            <div class="col-lg-3 control-area">
+                <div class="search-block">
+                    <p class="search-places-title">Search:</p>
+                    <input type="search" class="search-places" data-bind="textInput: searchQuery"/>
+                </div>
+                <ul class="favourite-places-list" data-bind="foreach: favouritePlaces">
+                    <!-- ko if: visible -->
+                    <li data-bind="click: infoWindow">
+                        <p>Address: <span data-bind="text: name"></span></p>
 
-            <ul>
-                <li>
-                    <a href="{{ path('al_real_estate_new') }}">
-                        Create a new entry
-                    </a>
-                </li>
-            </ul>
-        {% endblock main_content %}
+                        <p class="favourite-place-latlng">LatLng: <span data-bind="text: latlng"></span></p>
+                        <a class="delete-button" href="javascript:void(0)" data-bind="click: $parent.deletePlace"><i
+                                    class="material-icons">delete</i></a>
+                    </li>
+                    <!-- /ko -->
+                </ul>
+            </div>
+            <div class="col-lg-9 map-area">
+
+                <div id="map-canvas"></div>
+
+            </div>
+        </div>
     </div>
+
 {% endblock body %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+
+    {% block javascriptVariables %}
+        <script type="text/javascript">
+
+            var realEstateData = {{ entities|json_encode|raw }};
+
+        </script>
+    {% endblock %}
+
+    {% javascripts
+    '@ALRealEstateBundle/Resources/public/js/homepage.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock javascripts %}

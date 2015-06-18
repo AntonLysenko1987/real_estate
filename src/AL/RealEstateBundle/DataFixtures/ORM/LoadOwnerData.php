@@ -4,19 +4,19 @@ namespace Ens\JobeetBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use AL\RealEstateBundle\Entity\Owner;
+use AL\RealEstateBundle\Entity\User;
 
-class LoadOwnerData extends AbstractFixture implements OrderedFixtureInterface
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $em)
     {
-        $alex = new Owner();
+        $alex = new User();
         $alex->setName('Александр Анатольевич');
         $alex->setEmail('joril@rambler.ru');
         $alex->setPhoneNumber('0672365789');
         $alex->setToken('token1');
 
-        $john = new Owner();
+        $john = new User();
         $john->setName('Джон Васильевич');
         $john->setEmail('joril90@gmail.com');
         $john->setPhoneNumber('0972835835');

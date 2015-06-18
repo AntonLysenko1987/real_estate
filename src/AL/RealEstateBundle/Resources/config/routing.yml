@@ -3,5 +3,23 @@ al_real_estate_al_real_estate:
     prefix:   /al_real_estate
 
 al_real_estate_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ALRealEstateBundle:Default:index }
+    path:     /
+    defaults: { _controller: ALRealEstateBundle:RealEstate:index }
+
+al_real_estate_login:
+    path:     /login
+    defaults: { _controller: ALRealEstateBundle:RealEstate:signIn }
+
+al_real_estate_login_check:
+    path:     /login_check
+
+al_real_estate_sign_up:
+    path:     /sign-up
+    defaults: { _controller: ALRealEstateBundle:RealEstate:signUp }
+
+al_real_estate_profile:
+    path:     /profile
+
+al_real_estate_sign_up_confirm:
+    path:     /sign-up-confirm
+    defaults: { _controller: ALRealEstateBundle:RealEstate:signUpConfirm }

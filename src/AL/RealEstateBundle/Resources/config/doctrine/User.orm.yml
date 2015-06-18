@@ -1,6 +1,6 @@
-AL\RealEstateBundle\Entity\Owner:
+AL\RealEstateBundle\Entity\User:
   type: entity
-  table: owner
+  table: user
   id:
     id:
       type: integer
@@ -23,6 +23,6 @@ AL\RealEstateBundle\Entity\Owner:
   oneToMany:
     real_estate_objects:
       targetEntity: RealEstate
-      mappedBy: owners
+      mappedBy: users
   lifecycleCallbacks:
       prePersist: [ setCreatedAtValue ]

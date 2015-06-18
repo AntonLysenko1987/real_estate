@@ -5,9 +5,9 @@ namespace AL\RealEstateBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Owner
+ * User
  */
-class Owner
+class User
 {
     /**
      * @var integer
@@ -49,6 +49,7 @@ class Owner
      */
     public function __construct()
     {
+        $this->setCreatedAtValue();
         $this->real_estate_objects = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -66,7 +67,7 @@ class Owner
      * Set name
      *
      * @param string $name
-     * @return Owner
+     * @return User
      */
     public function setName($name)
     {
@@ -89,7 +90,7 @@ class Owner
      * Set email
      *
      * @param string $email
-     * @return Owner
+     * @return User
      */
     public function setEmail($email)
     {
@@ -112,7 +113,7 @@ class Owner
      * Set phone_number
      *
      * @param integer $phoneNumber
-     * @return Owner
+     * @return User
      */
     public function setPhoneNumber($phoneNumber)
     {
@@ -135,7 +136,7 @@ class Owner
      * Set created_at
      *
      * @param \DateTime $createdAt
-     * @return Owner
+     * @return User
      */
     public function setCreatedAt($createdAt)
     {
@@ -158,7 +159,7 @@ class Owner
      * Set token
      *
      * @param string $token
-     * @return Owner
+     * @return User
      */
     public function setToken($token)
     {
@@ -181,7 +182,7 @@ class Owner
      * Add real_estate_objects
      *
      * @param \AL\RealEstateBundle\Entity\RealEstate $realEstateObjects
-     * @return Owner
+     * @return User
      */
     public function addRealEstateObject(\AL\RealEstateBundle\Entity\RealEstate $realEstateObjects)
     {

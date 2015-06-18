@@ -4,9 +4,11 @@ namespace AL\RealEstateBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\SecurityContext;
 
 use AL\RealEstateBundle\Entity\RealEstate;
 use AL\RealEstateBundle\Form\RealEstateType;
+use AL\RealEstateBundle\Form\SignUpType;
 
 /**
  * RealEstate controller.
@@ -19,10 +21,10 @@ class RealEstateController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ALRealEstateBundle:RealEstate')->getActiveRealEstates(5);
+        $entities = $em->getRepository('ALRealEstateBundle:RealEstate')->getActiveRealEstates(30);
 
         return $this->render('ALRealEstateBundle:RealEstate:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities
         ));
     }
     /**
@@ -213,6 +215,46 @@ class RealEstateController extends Controller
         }
 
         return $this->redirect($this->generateUrl('al_real_estate'));
+    }
+    private function createSignUpForm()
+    {
+        $form = $this->createForm(new SignUpType(), array(
+            'action' => $this->generateUrl('al_real_estate_sign_up_confirm'),
+            'method' => 'POST',
+        ));
+
+        return $form;
+    }
+    public function signInAction()
+    {
+
+        $request = $this->getRequest();
+        $session = $request->getSession();
+
+        // get the login error if there is one
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+        } else {
+            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+        }
+
+        return $this->render('ALRealEstateBundle:Default:sign-in.html.twig', array(
+            // last username entered by the user
+            'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+            'error'         => $error,
+        ));
+    }
+
+    public function signUpAction()
+    {
+        $signUpForm = $this->createSignUpForm();
+
+        $signUpForm->add('submit', 'submit', array('label' => 'Sign Up'));
+
+        return $this->render('ALRealEstateBundle:Default:sign-up.html.twig', array(
+            'signUp' =>  $signUpForm->createView()
+        ));
     }
 
     /**

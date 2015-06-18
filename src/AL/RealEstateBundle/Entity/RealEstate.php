@@ -3,12 +3,13 @@
 namespace AL\RealEstateBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * RealEstate
  */
-class RealEstate
+class RealEstate implements \JsonSerializable
 {
     /**
      * @var integer
@@ -81,9 +82,9 @@ class RealEstate
     private $operation_type;
 
     /**
-     * @var \AL\RealEstateBundle\Entity\Owner
+     * @var \AL\RealEstateBundle\Entity\User
      */
-    private $owners;
+    private $users;
 
 
     /**
@@ -95,7 +96,10 @@ class RealEstate
     {
         return $this->id;
     }
-
+    public function __construct()
+    {
+        $this->setCreatedAtValue();
+    }
     /**
      * Set address
      *
@@ -396,26 +400,26 @@ class RealEstate
     }
 
     /**
-     * Set owners
+     * Set users
      *
-     * @param \AL\RealEstateBundle\Entity\Owner $owners
+     * @param \AL\RealEstateBundle\Entity\User $users
      * @return RealEstate
      */
-    public function setOwners(\AL\RealEstateBundle\Entity\Owner $owners = null)
+    public function setUsers(\AL\RealEstateBundle\Entity\User $users = null)
     {
-        $this->owners = $owners;
+        $this->users = $users;
 
         return $this;
     }
 
     /**
-     * Get owners
+     * Get users
      *
-     * @return \AL\RealEstateBundle\Entity\Owner 
+     * @return \AL\RealEstateBundle\Entity\User
      */
-    public function getOwners()
+    public function getUsers()
     {
-        return $this->owners;
+        return $this->users;
     }
     /**
      * @ORM\PrePersist
@@ -433,5 +437,17 @@ class RealEstate
     {
         // Add your code here
         $this->updated_at = new \DateTime();
+    }
+
+    /**
+     * (PHP 5 &gt;= 5.4.0)<br/>
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return get_object_vars($this);
     }
 }

@@ -54,11 +54,11 @@ AL\RealEstateBundle\Entity\RealEstate:
       joinColumn:
         name: operation_type_id
         referencedColumnName: id
-    owners:
-      targetEntity: Owner
+    users:
+      targetEntity: User
       inversedBy: real_estate_objects
       joinColumn:
-        name: owner_id
+        name: user_id
         referencedColumnName: id
   lifecycleCallbacks:
       prePersist: [ setCreatedAtValue ]
