@@ -2,12 +2,13 @@
 
 namespace AL\RealEstateBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
  */
-class User
+class User  implements UserInterface
 {
     /**
      * @var integer
@@ -43,6 +44,16 @@ class User
      * @var \Doctrine\Common\Collections\Collection
      */
     private $real_estate_objects;
+
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $password;
 
     /**
      * Constructor
@@ -178,6 +189,26 @@ class User
         return $this->token;
     }
 
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
     /**
      * Add real_estate_objects
      *
@@ -222,5 +253,22 @@ class User
     {
         return $this->getName();
     }
+    public function getRoles()
+    {
+        return array('ROLE_ADMIN');
+    }
 
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+
+    }
+    public function equals(UserInterface $user)
+    {
+        return $user->getUsername() == $this->getUsername();
+    }
 }

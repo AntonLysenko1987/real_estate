@@ -6,6 +6,12 @@ AL\RealEstateBundle\Entity\User:
       type: integer
       generator: {strategy: AUTO}
   fields:
+    username:
+      type: string
+      length: 255
+    password:
+      type: string
+      length: 255
     name:
       type: string
       length: 255
