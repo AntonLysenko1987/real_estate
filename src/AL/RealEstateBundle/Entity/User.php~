@@ -19,8 +19,14 @@ class User extends BaseUser
     /**
      * @var string
      */
-    protected $name;
+    private $name;
 
+    /**
+     * @var string
+     */
+    protected $email;
+
+    private $githubID;
 
     /**
      * @var integer
@@ -42,6 +48,15 @@ class User extends BaseUser
      */
     private $real_estate_objects;
 
+//    /**
+//     * @var string
+//     */
+//    protected $username;
+//
+//    /**
+//     * @var string
+//     */
+//    protected $password;
 
     /**
      * Constructor
@@ -260,6 +275,32 @@ class User extends BaseUser
     {
         return $user->getUsername() == $this->getUsername();
     }
+    /**
+     * @var string
+     */
+    private $github_id;
 
 
+    /**
+     * Set github_id
+     *
+     * @param string $githubId
+     * @return User
+     */
+    public function setGithubId($githubId)
+    {
+        $this->github_id = $githubId;
+
+        return $this;
+    }
+
+    /**
+     * Get github_id
+     *
+     * @return string 
+     */
+    public function getGithubId()
+    {
+        return $this->github_id;
+    }
 }

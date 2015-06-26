@@ -3,12 +3,12 @@
 security:
     # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
     encoders:
-        AL\RealEstateBundle\Entity\User: sha512
+        FOS\UserBundle\Model\UserInterface: sha512
 
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
@@ -17,39 +17,40 @@ security:
 #                users:
 ##                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
 #                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-         main:
-            entity: { class: AL\RealEstateBundle\Entity\User, property: username }
+#         main:
+#            entity: { class: AL\RealEstateBundle\Entity\User, property: username }
+          fos_userbundle:
+                      id: fos_user.user_provider.username
 
     # the main part of the security, where you can set up firewalls
     # for specific sections of your app
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-#        dev:
-#            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-#            security: false
-#        # the login page has to be accessible for everybody
-#        demo_login:
-#            pattern:  ^/demo/secured/login$
-#            security: false
+        secure_area:
+                    pattern: ^/secure_area
 
-        # secures part of the application
-        secured_area:
-            pattern:    ^/
-            # it's important to notice that in this case _demo_security_check and _demo_login
-            # are route names and that they are specified in the AcmeDemoBundle
-            form_login:
-                check_path: /login_check
-                login_path: /login
-#            logout:
-#                path:   _demo_logout
-#                target: _demo
-            anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
+                    oauth:
+                        failure_path: /secure_area/connect
+                        login_path: /secure_area/connect
+                        check_path: /secure_area/connect
+                        provider: fos_userbundle
+                        resource_owners:
+                            github:     /secure_area/login/check-github
+                        oauth_user_provider:
+                            service: hwi_oauth.user.provider.fosub_bridge
+
+                    anonymous:    true
+                    logout:
+                        path:           /secure_area/logout
+                        target:         /secure_area/connect #where to go after logout
 
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/profile, roles: ROLE_ADMIN }
+         - { path: ^/secure_area/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/secure_area/connect, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/secure_area, roles: ROLE_USER }
+#         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#         - { path: ^/admin/, role: ROLE_ADMIN }

@@ -19,6 +19,18 @@ class OperationType
      */
     private $type;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $operation_types;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->operation_types = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -52,22 +64,6 @@ class OperationType
     {
         return $this->type;
     }
-    public function __toString()
-    {
-        return $this->getType();
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $operation_types;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->operation_types = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add operation_types
@@ -100,5 +96,9 @@ class OperationType
     public function getOperationTypes()
     {
         return $this->operation_types;
+    }
+    public function __toString()
+    {
+        return $this->getType();
     }
 }

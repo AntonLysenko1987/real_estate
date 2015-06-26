@@ -1,31 +1,38 @@
 AL\RealEstateBundle\Entity\User:
   type: entity
-  table: user
+  table: fos_user
   id:
     id:
       type: integer
-      generator: {strategy: AUTO}
+      generator:
+          strategy: AUTO
   fields:
-    username:
-      type: string
-      length: 255
-    password:
-      type: string
-      length: 255
+#    username:
+#      type: string
+#      length: 255
+#    password:
+#      type: string
+#      length: 255
     name:
       type: string
       length: 255
-    email:
-      type: string
-      length: 255
+      nullable: true
+#    email:
+#      type: string
+#      length: 255
     phone_number:
       type: integer
+      nullable: true
     created_at:
       type: datetime
     token:
       type: string
       length: 255
-      unique: true
+      nullable: true
+    githubID:
+      type: string
+      length: 255
+      nullable: true
   oneToMany:
     real_estate_objects:
       targetEntity: RealEstate

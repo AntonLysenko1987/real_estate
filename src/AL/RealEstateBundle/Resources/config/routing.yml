@@ -2,16 +2,65 @@ al_real_estate_al_real_estate:
     resource: "@ALRealEstateBundle/Resources/config/routing/realestate.yml"
     prefix:   /al_real_estate
 
+#fos_user:
+#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /secure_area
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /secure_area/profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /secure_area/register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /secure_area/resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /secure_area/profile
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /secure_area/connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /secure_area/connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /secure_area/connect
+
+hwi_github_login:
+    pattern: /secure_area/login/check-github
+
+facebook_login:
+    path: /login/check-facebook
+
+#hwi_oauth_login:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+#    prefix:   /login
+
 al_real_estate_homepage:
     path:     /
     defaults: { _controller: ALRealEstateBundle:RealEstate:index }
 
-al_real_estate_login:
-    path:     /login
-    defaults: { _controller: ALRealEstateBundle:RealEstate:signIn }
-
-al_real_estate_login_check:
-    path:     /login_check
+#al_real_estate_login:
+#    path:     /login
+#    defaults: { _controller: ALRealEstateBundle:RealEstate:signIn }
+#
+#al_real_estate_sign_out:
+#    path:     /sign-out
+#    defaults: { _controller: ALRealEstateBundle:RealEstate:signIn }
+#
+#al_real_estate_login_check:
+#    path:     /login_check
 
 al_real_estate_sign_up:
     path:     /sign-up

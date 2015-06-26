@@ -19,6 +19,18 @@ class RealEstateCategory
      */
     private $name;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $real_estate_objects;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->real_estate_objects = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -52,30 +64,14 @@ class RealEstateCategory
     {
         return $this->name;
     }
-    public function __toString()
-    {
-        return $this->getName();
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $real_estate_objects;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->real_estate_objects = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add real_estate_objects
      *
-     * @param \AL\RealEstateBundle\RealEstate $realEstateObjects
+     * @param \AL\RealEstateBundle\Entity\RealEstate $realEstateObjects
      * @return RealEstateCategory
      */
-    public function addRealEstateObject(\AL\RealEstateBundle\RealEstate $realEstateObjects)
+    public function addRealEstateObject(\AL\RealEstateBundle\Entity\RealEstate $realEstateObjects)
     {
         $this->real_estate_objects[] = $realEstateObjects;
 
@@ -85,9 +81,9 @@ class RealEstateCategory
     /**
      * Remove real_estate_objects
      *
-     * @param \AL\RealEstateBundle\RealEstate $realEstateObjects
+     * @param \AL\RealEstateBundle\Entity\RealEstate $realEstateObjects
      */
-    public function removeRealEstateObject(\AL\RealEstateBundle\RealEstate $realEstateObjects)
+    public function removeRealEstateObject(\AL\RealEstateBundle\Entity\RealEstate $realEstateObjects)
     {
         $this->real_estate_objects->removeElement($realEstateObjects);
     }
@@ -100,5 +96,9 @@ class RealEstateCategory
     public function getRealEstateObjects()
     {
         return $this->real_estate_objects;
+    }
+    public function __toString()
+    {
+        return $this->getName();
     }
 }
